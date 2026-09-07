@@ -2993,6 +2993,7 @@ button, input, select { font: inherit; }
 .pressure-card, .bdh-tabs-wrapper, .sources-directory-card { min-width: 0; }
 
 .mobile-menu-btn, .mobile-nav-panel { display: none; }
+.mobile-nav-panel[hidden] { display: none !important; }
 .interaction-note {
     flex: 1 1 100%; font-family: var(--font-mono); font-size: .7rem;
     color: var(--text-muted); padding: .55rem .7rem;
@@ -3028,8 +3029,10 @@ button, input, select { font: inherit; }
     .mobile-menu-btn span { display: block; width: 100%; height: 2px; border-radius: 2px; background: currentColor; }
     .mobile-nav-panel {
         position: absolute; top: calc(100% + .55rem); left: .75rem; right: .75rem; z-index: 110;
-        display: grid; gap: .35rem; padding: .65rem; background: rgba(17,17,26,.98);
+        display: grid; gap: .35rem; padding: .65rem; background: rgba(17,17,26,.99);
         border: 1px solid var(--border-default); border-radius: 12px; box-shadow: var(--shadow-card);
+        max-height: min(70vh, 520px); overflow-y: auto; overscroll-behavior: contain;
+        -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
     }
     .mobile-nav-panel.open { display: grid; }
     .mobile-nav-panel a {
