@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEMORY LAB — Interactive Linear Attention Explainer</title>
+    <meta name="description" content="An interactive research-grade explainer for DataForge 2026 Pathway Track: Understanding Linear Attention through incremental memory reorganization and its connection to Dragon Hatchling (BDH).">
+    
+    <!-- Google Fonts: Inter & JetBrains Mono for pristine editorial research look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- KaTeX for mathematical formulas -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+    <!-- Custom Dark Research-Lab Design System -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-lab">
+
+    <!-- Vertical Section Progress Rail -->
+    <aside class="progress-rail" aria-label="Section Navigation Rail" id="progressRail">
+        <div class="rail-indicator" id="railIndicator"></div>
+        <a href="#hero" class="rail-dot active" data-sec="0" title="01 / Hero"><span class="rail-num">01</span></a>
+        <a href="#problem" class="rail-dot" data-sec="1" title="02 / Problem"><span class="rail-num">02</span></a>
+        <a href="#pressure" class="rail-dot" data-sec="2" title="03 / 100-Token Race"><span class="rail-num">03</span></a>
+        <a href="#experiment" class="rail-dot" data-sec="3" title="04 / Memory Engine"><span class="rail-num">04</span></a>
+        <a href="#prediction" class="rail-dot" data-sec="4" title="05 / Prediction"><span class="rail-num">05</span></a>
+        <a href="#bdh" class="rail-dot" data-sec="5" title="06 / BDH Connection"><span class="rail-num">06</span></a>
+        <a href="#limitations" class="rail-dot" data-sec="6" title="07 / Limitations"><span class="rail-num">07</span></a>
+        <a href="#sources" class="rail-dot" data-sec="7" title="08 / Sources"><span class="rail-num">08</span></a>
+    </aside>
+
+    <!-- =========================================================
+         SECTION A: STICKY RESEARCH NAVBAR
+         ========================================================= -->
+    <header class="lab-navbar" id="labNavbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="#hero" class="brand-link" aria-label="Memory Lab Home">
+                    <span class="brand-logo-badge">
+                        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+                            <path d="M6.5 10v7.5a1.5 1.5 0 0 0 1.5 1.5H14"></path>
+                        </svg>
+                    </span>
+                    <div class="brand-titles">
+                        <span class="brand-name">MEMORY LAB</span>
+                        <span class="brand-sub">Linear Attention — Interactive Explainer</span>
+                    </div>
+                </a>
+            </div>
+
+            <nav class="nav-links" aria-label="Main Navigation">
+                <a href="#problem" class="nav-item">01 Problem</a>
+                <a href="#pressure" class="nav-item">02 100-Token Race</a>
+                <a href="#experiment" class="nav-item">03 Memory Engine</a>
+                <a href="#prediction" class="nav-item">04 Predict</a>
+                <a href="#bdh" class="nav-item">05 BDH Research</a>
+                <a href="#limitations" class="nav-item">06 Limits</a>
+                <a href="#sources" class="nav-item">07 Sources</a>
+            </nav>
+
+            <div class="nav-actions">
+                <div class="status-indicator" title="Substrate is active and executing live JavaScript linear algebra">
+                    <span class="pulse-dot"></span>
+                    <span class="status-label">LIVE COMPUTATION</span>
+                </div>
+                <button id="toggleMotionBtn" class="btn-icon" aria-label="Toggle reduced motion mode" title="Toggle Reduced Motion">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="lab-main">
+
+        <!-- =========================================================
+             01 HERO SECTION: THE COMPUTATIONAL DISCOVERY
+             ========================================================= -->
+        <section class="section-hero section-panel" id="hero" data-section-idx="0">
+            <div class="hero-container">
+                <div class="hero-header-block">
+                    <div class="track-badge-row">
+                        <span class="lab-badge badge-track">Pathway Track: Explain the Frontier</span>
+                        <span class="lab-badge badge-topic">Topic: Linear Attention</span>
+                        <span class="lab-badge badge-substrate">Substrate: Live Toy Computation</span>
+                    </div>
+                    
+                    <h1 class="hero-headline">
+                        WHAT CHANGES<br>
+                        WHEN ATTENTION<br>
+                        <span class="text-gradient">STOPS COMPARING EVERYTHING?</span>
+                    </h1>
+                    
+                    <p class="hero-subline">
+                        An interactive scientific instrument revealing how Linear Attention reorganizes attention into incremental contextual memory rather than quadratic pairwise token comparisons.
+                    </p>
+
+                    <!-- Central Educational Claim Card -->
+                    <div class="central-claim-box" role="region" aria-label="Central Educational Claim">
+                        <div class="claim-tag">
+                            <span class="tag-icon">◆</span> CENTRAL EDUCATIONAL CLAIM
+                        </div>
+                        <blockquote class="claim-quote">
+                            “Linear attention reorganizes attention so that contextual memory can be updated incrementally rather than explicitly comparing every pair of tokens.”
+                        </blockquote>
+                        <div class="claim-footer">
+                            <span class="evidence-pill pill-paper">[FORMAL / PAPER: Katharopoulos et al., 2020]</span>
+                            <span class="evidence-pill pill-concept">[CONCEPTUAL RELATION: BDH-CQ Additive Memory]</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-cta-group">
+                        <a href="#experiment" class="btn btn-primary">
+                            <span>START EXPERIMENT</span>
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                        <a href="#problem" class="btn btn-secondary">
+                            <span>HOW IT WORKS</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Central Computational Memory Engine Visual (Animated Continuous Pipeline) -->
+                <div class="hero-engine-card" aria-label="Live Computational Memory Engine Visualization">
+                    <div class="card-header-line">
+                        <div class="engine-title-group">
+                            <span class="evidence-pill pill-toy">[TOY COMPUTATION]</span>
+                            <span class="engine-title">ACTIVE MEMORY ENGINE</span>
+                            <span class="engine-status" id="heroEngineStatus">t = 01 | token = "The" | state updated</span>
+                        </div>
+                        <div class="engine-controls-group">
+                            <button id="heroPlayBtn" class="btn-hero-ctrl" title="Play Engine" aria-label="Play Engine">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                <span>PLAY</span>
+                            </button>
+                            <button id="heroPauseBtn" class="btn-hero-ctrl active" title="Pause Engine" aria-label="Pause Engine">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                                <span>PAUSE</span>
+                            </button>
+                            <button id="heroReplayBtn" class="btn-hero-ctrl" title="Replay Engine" aria-label="Replay Engine" style="display: none;">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6M23 20v-6h-6M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                                <span>REPLAY</span>
+                            </button>
+                        </div>
+                        <div class="engine-counter-group">
+                            <span class="counter-label">Token:</span>
+                            <span class="counter-val font-mono text-accent-lavender" id="heroTokenCounter">1 / 8</span>
+                        </div>
+                    </div>
+
+                    <!-- Traveling Token Indicator Rail -->
+                    <div class="traveler-track-container" aria-hidden="true">
+                        <div class="traveler-rail-line">
+                            <div class="traveler-pulse-head" id="heroTravelerHead">
+                                <span class="traveler-token-label" id="heroTravelerLabel">The</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flow Diagram Pipeline -->
+                    <div class="engine-pipeline-stage">
+                        <!-- Stage 1: Input Sequence -->
+                        <div class="pipeline-block active-pulse" id="pipeInputBlock">
+                            <div class="block-label">1. TOKEN INPUT</div>
+                            <div class="token-stream-row" id="heroTokenStream">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+                            <div class="math-subscript">Token vector \( x_t \in \mathbb{R}^d \)</div>
+                        </div>
+
+                        <!-- Connector Arrow -->
+                        <div class="pipe-connector" id="pipeConn1">
+                            <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M5 12h14M13 6l6 6-6 6" stroke-width="2"/>
+                            </svg>
+                            <span class="pipe-op-tag">\( \phi(k_t) \)</span>
+                        </div>
+
+                        <!-- Stage 2: Feature Transformation -->
+                        <div class="pipeline-block" id="pipeTransformBlock">
+                            <div class="block-label">2. KERNEL TRANSFORM</div>
+                            <div class="feature-bar-mini" id="heroFeatureMini">
+                                <!-- 4 floating mini bars -->
+                            </div>
+                            <div class="math-subscript">\(\phi(x) = \text{ELU}(x) + 1\)</div>
+                        </div>
+
+                        <!-- Connector Arrow -->
+                        <div class="pipe-connector" id="pipeConn2">
+                            <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M5 12h14M13 6l6 6-6 6" stroke-width="2"/>
+                            </svg>
+                            <span class="pipe-op-tag">\( \otimes v_t^T \)</span>
+                        </div>
+
+                        <!-- Stage 3: Outer-Product Update -->
+                        <div class="pipeline-block" id="pipeUpdateBlock">
+                            <div class="block-label">3. MEMORY UPDATE</div>
+                            <div class="update-matrix-mini" id="heroUpdateMini">
+                                <!-- 3x3 outer-product delta -->
+                            </div>
+                            <div class="math-subscript">\(\Delta S_t = \phi(k_t) v_t^T\)</div>
+                        </div>
+
+                        <!-- Connector Arrow -->
+                        <div class="pipe-connector" id="pipeConn3">
+                            <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M5 12h14M13 6l6 6-6 6" stroke-width="2"/>
+                            </svg>
+                            <span class="pipe-op-tag">\( + \)</span>
+                        </div>
+
+                        <!-- Stage 4: Incremental State -->
+                        <div class="pipeline-block highlight-block" id="pipeStateBlock">
+                            <div class="block-label">4. CURRENT STATE</div>
+                            <div class="state-matrix-mini" id="heroStateMini">
+                                <!-- Live 3x3 accumulator -->
+                            </div>
+                            <div class="math-subscript">\( S_t = S_{t-1} + \Delta S_t \)</div>
+                        </div>
+
+                        <!-- Connector Arrow -->
+                        <div class="pipe-connector" id="pipeConn4">
+                            <svg class="flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M5 12h14M13 6l6 6-6 6" stroke-width="2"/>
+                            </svg>
+                            <span class="pipe-op-tag">\( \phi(q)^T S \)</span>
+                        </div>
+
+                        <!-- Stage 5: Output Query Readout -->
+                        <div class="pipeline-block" id="pipeQueryBlock">
+                            <div class="block-label">5. INSTANT QUERY</div>
+                            <div class="query-readout-box" id="heroQueryReadout">
+                                <div class="query-vector-val">Retrieving...</div>
+                            </div>
+                            <div class="math-subscript">\( y_t = \frac{\phi(q_t)^T S_t}{\phi(q_t)^T z_t} \)</div>
+                        </div>
+                    </div>
+
+                    <div class="hero-engine-caption">
+                        <span class="caption-dot"></span>
+                        <span><strong>Simplified visual representation:</strong> Context updates incrementally into persistent state matrix \(S_t\) without materializing an \(N \times N\) pairwise comparison grid.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================================
+             02 THE PROBLEM: ATTENTION HAS A GROWING MEMORY BILL
+             ========================================================= -->
+        <section class="section-container section-panel" id="problem" data-section-idx="1">
+            <div class="section-intro">
+                <span class="section-number">02 / THE PROBLEM</span>
+                <h2 class="section-heading">ATTENTION HAS A GROWING MEMORY BILL</h2>
+                <p class="section-subtext">
+                    Standard Softmax couples every token to all previous tokens. In autoregressive inference, the KV-Cache must store all keys and values, scaling memory with sequence length \(N\).
+                </p>
+            </div>
+
+            <!-- Mathematical Formulation Comparison Card -->
+            <div class="formula-comparison-grid">
+                <div class="formula-card traditional-card">
+                    <div class="card-badge-row">
+                        <span class="card-badge badge-traditional">Standard Softmax Attention</span>
+                        <span class="card-badge badge-complexity">Complexity: \( \mathcal{O}(N^2 \cdot d) \)</span>
+                    </div>
+                    <div class="formula-box">
+                        <div class="math-formula">
+                            \[ \text{Attn}(Q, K, V) = \text{Softmax}\left(\frac{Q K^T}{\sqrt{d}}\right) V \]
+                        </div>
+                    </div>
+                    <p class="card-desc-compact">
+                        Non-linear Softmax couples keys and values inside \(\exp(Q K^T)\). Terms cannot be reordered, forcing explicit computation: standard attention forms an \(N \times N\) attention score matrix. This toy uses \(N \times N\) as a simplified pairwise interaction count.
+                    </p>
+                </div>
+
+                <div class="formula-card linear-card">
+                    <div class="card-badge-row">
+                        <span class="card-badge badge-linear">Linear Kernel Attention</span>
+                        <span class="card-badge badge-complexity">Complexity: \( \mathcal{O}(N \cdot d^2) \)</span>
+                    </div>
+                    <div class="formula-box">
+                        <div class="math-formula">
+                            \[ \text{LinearAttn}(Q, K, V) = \frac{\phi(Q) \left( \phi(K)^T V \right)}{\phi(Q) \left( \phi(K)^T \mathbf{1} \right)} \]
+                        </div>
+                    </div>
+                    <p class="card-desc-compact">
+                        By substituting a kernel dot product \(\phi(q)^T \phi(k)\), matrix multiplication becomes associative: \(\phi(K)^T V\) collapses sequence length into a constant \(d \times d\) state matrix \(S_t\).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Interactive Pairwise Token Demo -->
+            <div class="toy-matrix-demo-panel">
+                <div class="panel-header">
+                    <div>
+                        <h3 class="panel-title">Pairwise Interaction Footprint Visualizer</h3>
+                        <p class="panel-desc">Click presets to observe the pairwise comparison matrix calculate live.</p>
+                    </div>
+                    <div class="seq-presets" role="group" aria-label="Sequence Length Presets">
+                        <span class="preset-label">Preset:</span>
+                        <button class="btn-preset active" data-n="4">N = 4</button>
+                        <button class="btn-preset" data-n="8">N = 8</button>
+                        <button class="btn-preset" data-n="16">N = 16</button>
+                        <button class="btn-preset" data-n="32">N = 32</button>
+                        <button class="btn-preset" data-n="64">N = 64</button>
+                        <button class="btn-preset" data-n="100">N = 100</button>
+                    </div>
+                </div>
+
+                <div class="pairwise-matrix-workspace">
+                    <div class="tokens-display-bar" id="problemTokenBar"></div>
+
+                    <div class="matrix-viz-container">
+                        <div class="matrix-labels-top" id="matrixColLabels"></div>
+                        <div class="matrix-body-row">
+                            <div class="matrix-labels-left" id="matrixRowLabels"></div>
+                            <div class="grid-canvas-wrapper">
+                                <div class="pairwise-grid" id="pairwiseGrid"></div>
+                                <canvas id="pairwiseDebtCanvas" width="280" height="280" class="pairwise-debt-canvas" style="display: none;" aria-label="Compressed Pairwise Debt Heatmap"></canvas>
+                            </div>
+                        </div>
+                        <div id="debtModeBadge" class="adaptive-mode-badge" style="display: none;">
+                            <span class="pulse-dot-small"></span>
+                            <span id="debtModeText">Adaptive View: Compressed Heatmap Active for N > 16</span>
+                        </div>
+                    </div>
+
+                    <div class="pairwise-metrics-summary">
+                        <div class="metric-item">
+                            <span class="metric-label">Sequence Length (\(N\)):</span>
+                            <span class="metric-val" id="metricSeqN">4</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Simplified Pairwise Slots (\(N \times N\)):</span>
+                            <span class="metric-val text-accent-red" id="metricPairwiseTotal">16</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Causal Evaluated (\(\frac{N(N+1)}{2}\)):</span>
+                            <span class="metric-val text-accent-lavender" id="metricCausalSlots">10</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Incremental Updates (\(N\)):</span>
+                            <span class="metric-val text-accent-violet" id="metricLinearUpdates">4</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Pairwise Overhead:</span>
+                            <span class="metric-val" id="metricOverheadFactor">4.0×</span>
+                        </div>
+                    </div>
+                    <div class="annotation-bar">
+                        <span class="evidence-pill pill-toy">[TOY COMPUTATION]</span>
+                        <span>Evaluated live in browser for exact \(N\). While standard attention forms an \(N \times N\) attention score matrix, this toy uses \(N \times N\) as a simplified pairwise interaction count. Directly rendered DOM grid for \(N \le 16\); compressed canvas heatmap for \(N > 16\).</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================================
+             03 100-TOKEN RACE: WATCH THE SEQUENCE GROW
+             ========================================================= -->
+        <section class="section-container section-panel" id="pressure" data-section-idx="2">
+            <div class="section-intro">
+                <span class="section-number">03 / 100-TOKEN RACE</span>
+                <h2 class="section-heading">WATCH THE SEQUENCE GROW</h2>
+                <p class="section-subtext">
+                    Drag the sequence slider from 4 to 100 tokens. Watch the pairwise interaction matrix detonate quadratically to 10,000 slots, while incremental state updates scale strictly as \(N\).
+                </p>
+            </div>
+
+            <div class="pressure-card">
+                <!-- Slider Control Strip: 4 to 100 -->
+                <div class="slider-control-card">
+                    <div class="slider-top-row">
+                        <label for="pressureSlider" class="slider-label">
+                            <strong>Sequence Length:</strong>
+                            <span class="slider-value-badge" id="sliderValDisplay">N = 16</span>
+                        </label>
+                        <div class="quick-jumps">
+                            <span>Presets:</span>
+                            <button class="btn-jump" data-val="8">8</button>
+                            <button class="btn-jump active" data-val="16">16</button>
+                            <button class="btn-jump" data-val="32">32</button>
+                            <button class="btn-jump" data-val="64">64</button>
+                            <button class="btn-jump" data-val="100">100</button>
+                        </div>
+                    </div>
+
+                    <input type="range" id="pressureSlider" min="4" max="100" step="1" value="16" class="lab-range" aria-label="Sequence Length Slider (4 to 100)">
+                    
+                    <div class="range-ticks">
+                        <span style="left: 0%;">4</span>
+                        <span style="left: 12.5%;">16</span>
+                        <span style="left: 29.17%;">32</span>
+                        <span style="left: 62.5%;">64</span>
+                        <span style="left: 100%;">100</span>
+                    </div>
+                </div>
+
+                <!-- Dual Synchronized Visual Lanes -->
+                <div class="pressure-dual-grid">
+                    <!-- Lane 1: Pairwise View -->
+                    <div class="pressure-panel traditional-pressure">
+                        <div class="panel-badge-bar">
+                            <span class="panel-badge">LANE 1: SIMPLIFIED PAIRWISE VIEW</span>
+                            <span class="panel-formula">\( N \times N \) slots</span>
+                        </div>
+
+                        <div class="big-counter-display">
+                            <div class="big-num text-accent-red" id="pairwiseCountDisplay">256</div>
+                            <div class="big-sub">Pairwise Interaction Slots</div>
+                        </div>
+
+                        <!-- Canvas Heatmap Visualizer (Smoothly handles up to 100x100 = 10,000 cells) -->
+                        <div class="pressure-canvas-box">
+                            <canvas id="pairwiseCanvas" width="280" height="280" class="pressure-canvas" aria-label="Pairwise Attention Matrix Canvas"></canvas>
+                            <div class="canvas-zoom-tag" id="canvasZoomTag">Resolution: 16×16</div>
+                        </div>
+
+                        <div class="scaling-note">
+                            <strong>Quadratic Footprint:</strong> While standard attention forms an \(N \times N\) attention score matrix, this toy uses \(N \times N\) as a simplified pairwise interaction count (10,000 slots at \(N=100\)).
+                        </div>
+                    </div>
+
+                    <!-- Lane 2: Incremental Linear Attention View -->
+                    <div class="pressure-panel linear-pressure">
+                        <div class="panel-badge-bar">
+                            <span class="panel-badge">LANE 2: SIMPLIFIED INCREMENTAL VIEW</span>
+                            <span class="panel-formula">\( N \) updates to \( d \times d \) state</span>
+                        </div>
+
+                        <div class="big-counter-display">
+                            <div class="big-num text-accent-violet" id="linearCountDisplay">16</div>
+                            <div class="big-sub">Sequential State Updates</div>
+                        </div>
+
+                        <!-- Dynamic 1D Stream Visualizer -->
+                        <div class="pressure-canvas-box">
+                            <div class="linear-stream-container" id="linearStreamBox">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="scaling-note">
+                            <strong>Constant State:</strong> At \(N=100\), exactly 100 updates are applied to the fixed \(d \times d\) state matrix.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pedagogical Footprint Table -->
+                <div class="hardware-scaling-table-box">
+                    <h4 class="subtable-title">Pedagogical Memory Footprint Comparison (\(d=64\), FP16 precision)</h4>
+                    <div class="table-responsive">
+                        <table class="lab-table">
+                            <thead>
+                                <tr>
+                                    <th>Architecture</th>
+                                    <th>Formulation</th>
+                                    <th>Time Complexity</th>
+                                    <th>KV / State Memory Size</th>
+                                    <th>At Current \(N = <span id="tableCurrentN">16</span>\)</th>
+                                    <th>Scaling Class</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong class="text-white">Standard Softmax Attention</strong></td>
+                                    <td>\(\text{Softmax}(QK^T/\sqrt{d})V\)</td>
+                                    <td>\(\mathcal{O}(N^2 \cdot d)\)</td>
+                                    <td>\(2 \cdot N \cdot d\) floats (KV Cache)</td>
+                                    <td><span id="tableStandardMem">4.0 KB</span></td>
+                                    <td><span class="tag-quadratic">Linear with \(N\) (Cache) / Quad (Train)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong class="text-accent-violet">Linear Attention</strong></td>
+                                    <td>\(\phi(Q) \left( \phi(K)^T V \right)\)</td>
+                                    <td>\(\mathcal{O}(N \cdot d^2)\)</td>
+                                    <td>\(d \times d\) floats (Recurrent State \(S\))</td>
+                                    <td><span id="tableLinearMem">8.0 KB</span></td>
+                                    <td><span class="tag-constant">Constant with \(N\) (\(\mathcal{O}(1)\))</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-footnote">
+                        *Simplified educational proxies. Real hardware runtimes depend on layer count, heads, batch size, and kernel tiling (FlashAttention-2).
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================================
+             04 MEMORY ENGINE: INTERACTIVE TOY COMPUTATION
+             ========================================================= -->
+        <section class="section-container section-panel" id="experiment" data-section-idx="3">
+            <div class="section-intro">
+                <span class="section-number">04 / MEMORY ENGINE</span>
+                <h2 class="section-heading">THE TOY INCREMENTAL MEMORY ENGINE</h2>
+                <p class="section-subtext">
+                    Watch genuine linear algebra execute step-by-step:
+                    <strong>Token \(\to\) Feature Map \(\to\) Outer Product \(\to\) State Update \(\to\) Query Retrieval</strong>.
+                </p>
+                <div class="substrate-banner">
+                    <span class="evidence-pill pill-toy">[TOY COMPUTATION]</span>
+                    <span>Genuine client-side JavaScript linear algebra — not an animated mock.</span>
+                </div>
+            </div>
+
+            <div class="experiment-console-card">
+                <!-- Control Toolbar -->
+                <div class="experiment-toolbar">
+                    <div class="control-group">
+                        <label for="patternSelect" class="control-label">Scenario:</label>
+                        <select id="patternSelect" class="lab-select">
+                            <option value="associative">Key-Value Recall ("apple=fruit, wolf=animal, ruby=gem")</option>
+                            <option value="sentiment">Sentiment Drift ("great -> flawless -> sudden -> failure")</option>
+                            <option value="syntactic">Grammar S-V-O ("scientist -> validates -> hypothesis")</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group action-buttons">
+                        <button id="btnAutoRun" class="btn btn-action btn-highlight" title="Run continuous sequence stream">
+                            <svg id="autoRunIcon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                            <span id="autoRunLabel">AUTO RUN</span>
+                        </button>
+                        <button id="btnStepNext" class="btn btn-action" title="Process exactly one token (Hotkey: Space)">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4l10 8-10 8V4zM19 5v14"/></svg>
+                            <span>STEP</span>
+                        </button>
+                        <button id="btnResetExp" class="btn btn-action btn-secondary" title="Reset state to zero">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6M23 20v-6h-6M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                            <span>RESET</span>
+                        </button>
+                        <button id="btnToggleDetails" class="btn btn-action btn-secondary" title="Toggle detailed vector tables">
+                            <span id="toggleDetailsLabel">INSPECT MATH ▼</span>
+                        </button>
+                    </div>
+
+                    <div class="control-group speed-group">
+                        <label for="expSpeedSlider" class="control-label">Speed: <span id="speedVal">1.0×</span></label>
+                        <input type="range" id="expSpeedSlider" min="0.2" max="3.0" step="0.2" value="1.0" class="lab-range-mini">
+                    </div>
+                </div>
+
+                <!-- Sequence Timeline Ribbon -->
+                <div class="sequence-timeline-ribbon">
+                    <div class="ribbon-label">SEQUENCE PROGRESS:</div>
+                    <div class="tokens-flow-strip" id="tokensFlowStrip"></div>
+                </div>
+
+                <!-- Primary Visual Memory Flow (Simplified Default View) -->
+                <div class="memory-flow-core-grid">
+                    <!-- 1. Input Token -->
+                    <div class="flow-core-col" id="flowColToken">
+                        <div class="core-step-badge">1. INPUT TOKEN</div>
+                        <div class="core-token-display">
+                            <span class="token-word-big" id="coreTokenWord">"apple"</span>
+                            <span class="token-cat-tag" id="coreTokenCat">Fruit Entity</span>
+                        </div>
+                        <div class="token-idx-label" id="coreTokenIdx">Step t = 01</div>
+                    </div>
+
+                    <!-- Flow Arrow -->
+                    <div class="flow-core-arrow" id="flowArrow1">➔ \(\phi(k) \otimes v^T\) ➔</div>
+
+                    <!-- 2. Memory Update -->
+                    <div class="flow-core-col" id="flowColUpdate">
+                        <div class="core-step-badge">2. MEMORY UPDATE</div>
+                        <div class="matrix-grid-box mini-4x4" id="deltaMatrixBox">
+                            <!-- 4x4 delta cells -->
+                        </div>
+                        <div class="core-norm-tag">Update Norm: <span id="deltaNormVal" class="text-accent-lavender font-mono">1.684</span></div>
+                    </div>
+
+                    <!-- Flow Arrow -->
+                    <div class="flow-core-arrow" id="flowArrow2">➔ \(+ S_{t-1}\) ➔</div>
+
+                    <!-- 3. Current State -->
+                    <div class="flow-core-col highlight-col" id="flowColState">
+                        <div class="core-step-badge">3. CURRENT STATE</div>
+                        <div class="matrix-grid-box primary-state-grid mini-4x4" id="stateMatrixBox">
+                            <!-- 4x4 state cells -->
+                        </div>
+                        <div class="core-norm-tag">Cumulative Norm: <span id="stateNormVal" class="text-accent-violet font-mono">1.684</span></div>
+                    </div>
+                </div>
+
+                <!-- Collapsible Detailed Math Panel (Hidden by default, shown via Inspect Math) -->
+                <div class="detailed-math-drawer" id="detailedMathDrawer" style="display: none;">
+                    <div class="drawer-header-bar">
+                        <span>DETAILED 4D VECTOR & FEATURE DECOMPOSITION</span>
+                    </div>
+                    <div class="experiment-math-stage">
+                        <!-- Column 1: Vector Values -->
+                        <div class="math-column">
+                            <div class="column-header">
+                                <span class="step-num">Step 1</span>
+                                <h4>Key & Feature Vectors</h4>
+                            </div>
+                            <div class="vector-display-card">
+                                <div class="vector-row">
+                                    <span class="vec-name">Key \(k_t\):</span>
+                                    <div class="vec-values" id="vecKDisplay">[0.85, -0.10, 0.40, 0.15]</div>
+                                </div>
+                                <div class="vector-row">
+                                    <span class="vec-name">Feature \(\phi(k_t) = \text{ELU}(k_t) + 1\):</span>
+                                    <div class="vec-values text-accent-lavender" id="vecPhiDisplay">[1.85, 0.90, 1.40, 1.15]</div>
+                                </div>
+                                <div class="vector-row">
+                                    <span class="vec-name">Value \(v_t\):</span>
+                                    <div class="vec-values text-accent-sage" id="vecVDisplay">[0.95, 0.05, 0.10, 0.00]</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Column 2: Query Readout -->
+                        <div class="math-column">
+                            <div class="column-header">
+                                <span class="step-num">Step 2</span>
+                                <h4>Associative Query Readout</h4>
+                            </div>
+                            <div class="probe-controls-row">
+                                <select id="queryPresetSelect" class="lab-select">
+                                    <option value="entity">Probe: "apple" (Fruit Key)</option>
+                                    <option value="second">Probe: "wolf" (Animal Key)</option>
+                                    <option value="neutral">Probe: Neutral feature</option>
+                                </select>
+                                <button id="btnProbeQuery" class="btn btn-primary btn-sm">EVALUATE</button>
+                            </div>
+                            <div class="retrieved-bars-container" id="retrievedBarsContainer"></div>
+                            <div class="probe-interpretation" id="probeInterpretation">
+                                Probing content-addressable readout against state \(S_t\).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Telemetry Log -->
+                <div class="telemetry-log-drawer">
+                    <div class="log-drawer-header">
+                        <span class="log-title">COMPUTATIONAL EVENT TELEMETRY LOG</span>
+                        <button id="btnClearLog" class="btn-text-only">Clear Log</button>
+                    </div>
+                    <div class="log-content-window" id="eventLogWindow" role="log" aria-live="polite">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================================
+             05 PREDICTION CHALLENGE: TRUTH BESIDE ESTIMATE
+             ========================================================= -->
+        <section class="section-container section-panel" id="prediction" data-section-idx="4">
+            <div class="section-intro">
+                <span class="section-number">05 / TRUTH BESIDE ESTIMATE</span>
+                <h2 class="section-heading">PREDICT BEFORE YOU RUN</h2>
+                <p class="section-subtext">
+                    Formulate your expectation before seeing the observed calculation. Compare prediction against verified truth.
+                </p>
+            </div>
+
+            <div class="prediction-card">
+                <!-- Question 1 Block -->
+                <div class="quiz-question-block" id="quizBlock1">
+                    <div class="quiz-q-header">
+                        <span class="quiz-index">Question 1 of 2</span>
+                        <h3 class="quiz-title">
+                            For a sequence length of \( N = 30 \) tokens, how many pairwise interaction slots are evaluated in our simplified comparison versus incremental state updates?
+                        </h3>
+                    </div>
+
+                    <div class="quiz-options-grid" role="radiogroup" aria-label="Question 1 Options">
+                        <button class="quiz-opt" data-correct="false" data-opt="A">
+                            <span class="opt-letter">A</span>
+                            <span class="opt-text">30 pairwise vs 30 updates</span>
+                        </button>
+                        <button class="quiz-opt" data-correct="false" data-opt="B">
+                            <span class="opt-letter">B</span>
+                            <span class="opt-text">60 pairwise vs 900 updates</span>
+                        </button>
+                        <button class="quiz-opt" data-correct="true" data-opt="C">
+                            <span class="opt-letter">C</span>
+                            <span class="opt-text">900 pairwise slots vs 30 updates (\(N^2\) vs \(N\))</span>
+                        </button>
+                        <button class="quiz-opt" data-correct="false" data-opt="D">
+                            <span class="opt-letter">D</span>
+                            <span class="opt-text">450 pairwise vs 450 updates</span>
+                        </button>
+                    </div>
+
+                    <!-- Truth Beside Estimate Comparison Panel -->
+                    <div class="truth-estimate-panel" id="truthPanel1" style="display: none;">
+                        <div class="truth-grid">
+                            <div class="truth-side expected-side">
+                                <span class="side-badge">YOUR PREDICTION</span>
+                                <div class="truth-val" id="expectedVal1">—</div>
+                                <p class="truth-desc" id="expectedDesc1">—</p>
+                            </div>
+                            <div class="truth-divider">vs</div>
+                            <div class="truth-side observed-side">
+                                <span class="side-badge">OBSERVED COMPUTATION</span>
+                                <div class="truth-val text-accent-sage" id="observedVal1">900 vs 30</div>
+                                <p class="truth-desc">
+                                    Standard attention evaluates \(30 \times 30 = 900\) pairwise comparison slots. Linear attention performs 30 sequential updates to the fixed \(d \times d\) state matrix.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 Block (Updated for 4-100 range: N=50 to 100) -->
+                <div class="quiz-question-block" id="quizBlock2" style="margin-top: 2rem;">
+                    <div class="quiz-q-header">
+                        <span class="quiz-index">Question 2 of 2</span>
+                        <h3 class="quiz-title">
+                            If sequence length grows from \( N = 50 \) to \( N = 100 \), what happens to the simplified pairwise interaction count?
+                        </h3>
+                    </div>
+
+                    <div class="quiz-options-grid" role="radiogroup" aria-label="Question 2 Options">
+                        <button class="quiz-opt" data-correct="true" data-opt="A">
+                            <span class="opt-letter">A</span>
+                            <span class="opt-text">Quadruples from 2,500 to 10,000 slots (\(50^2 \to 100^2\))</span>
+                        </button>
+                        <button class="quiz-opt" data-correct="false" data-opt="B">
+                            <span class="opt-letter">B</span>
+                            <span class="opt-text">Doubles from 2,500 to 5,000 slots</span>
+                        </button>
+                        <button class="quiz-opt" data-correct="false" data-opt="C">
+                            <span class="opt-letter">C</span>
+                            <span class="opt-text">Grows linearly from 50 to 100 slots</span>
+                        </button>
+                        <button class="quiz-opt" data-correct="false" data-opt="D">
+                            <span class="opt-letter">D</span>
+                            <span class="opt-text">Remains constant because model dimensions are unchanged</span>
+                        </button>
+                    </div>
+
+                    <div class="truth-estimate-panel" id="truthPanel2" style="display: none;">
+                        <div class="truth-grid">
+                            <div class="truth-side expected-side">
+                                <span class="side-badge">YOUR PREDICTION</span>
+                                <div class="truth-val" id="expectedVal2">—</div>
+                                <p class="truth-desc" id="expectedDesc2">—</p>
+                            </div>
+                            <div class="truth-divider">vs</div>
+                            <div class="truth-side observed-side">
+                                <span class="side-badge">OBSERVED COMPUTATION</span>
+                                <div class="truth-val text-accent-sage" id="observedVal2">2,500 ➔ 10,000 Slots</div>
+                                <p class="truth-desc">
+                                    Because pairwise attention scales quadratically (\(N^2\)), doubling sequence length quadruples the comparison count (\(2^2 = 4\times\)). Meanwhile, incremental updates simply increase from 50 to 100.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================================
+             06 BDH / BDH-CQ RESEARCH CONNECTION
+             ========================================================= -->
+        <section class="section-container section-panel" id="bdh" data-section-idx="5">
+            <div class="section-intro">
+                <span class="section-number">06 / FRONTIER RESEARCH</span>
+                <h2 class="section-heading">FROM ATTENTION TO MEMORY: THE BDH CONNECTION</h2>
+                <p class="section-subtext">
+                    How does linear attention connect to modern Post-Transformer architectures? Pathway's <strong>Dragon Hatchling (BDH)</strong> and <strong>BDH-CQ</strong> reframe attention as dynamic synaptic plasticity.
+                </p>
+            </div>
+
+            <!-- 3 Interactive Tabs -->
+            <div class="bdh-tabs-wrapper">
+                <div class="tab-buttons-bar" role="tablist" aria-label="BDH Architecture Deep Dive">
+                    <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tabContent1" id="tabBtn1" data-tab="1">
+                        <span class="tab-num">01</span>
+                        <span class="tab-text">Linear Attention</span>
+                    </button>
+                    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tabContent2" id="tabBtn2" data-tab="2">
+                        <span class="tab-num">02</span>
+                        <span class="tab-text">Fast Weights & Synapses</span>
+                    </button>
+                    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tabContent3" id="tabBtn3" data-tab="3">
+                        <span class="tab-num">03</span>
+                        <span class="tab-text">Pathway BDH / BDH-CQ</span>
+                    </button>
+                </div>
+
+                <!-- Tab 1: Linear Attention Formulation -->
+                <div class="tab-pane active" id="tabContent1" role="tabpanel" aria-labelledby="tabBtn1">
+                    <div class="tab-inner-grid">
+                        <div class="tab-text-side">
+                            <div class="evidence-pill-row">
+                                <span class="evidence-pill pill-paper">[DIRECT RESEARCH EVIDENCE: Katharopoulos et al., 2020]</span>
+                            </div>
+                            <h3 class="tab-heading">Kernel Reassociation Unlocks Recurrence</h3>
+                            <p>
+                                By decomposing attention similarity as \(\text{sim}(q, k) = \phi(q)^T \phi(k)\), matrix associativity allows factoring \(\phi(q_i)\) out of the summation:
+                            </p>
+                            <div class="math-callout">
+                                \[ O_i = \frac{\phi(q_i)^T \left( \sum_{j=1}^i \phi(k_j) v_j^T \right)}{\phi(q_i)^T \left( \sum_{j=1}^i \phi(k_j) \right)} = \frac{\phi(q_i)^T S_i}{\phi(q_i)^T z_i} \]
+                            </div>
+                            <p>
+                                Complexity transforms from \(\mathcal{O}(N^2 \cdot d)\) pairwise matrix multiplication into an \(\mathcal{O}(N \cdot d^2)\) recurrent state update.
+                            </p>
+                        </div>
+                        <div class="tab-diagram-side">
+                            <div class="concept-diagram-box">
+                                <div class="diagram-title">Associative Reorganization</div>
+                                <div class="reorg-diagram">
+                                    <div class="reorg-step">
+                                        <div class="step-badge">Standard Attention</div>
+                                        <div class="step-flow">\( (Q \times K^T) \times V \)</div>
+                                        <div class="step-dim">\([N \times N] \times [N \times d]\)</div>
+                                    </div>
+                                    <div class="reorg-arrow">➔ Reassociate ➔</div>
+                                    <div class="reorg-step highlight-step">
+                                        <div class="step-badge">Linear Attention</div>
+                                        <div class="step-flow">\( \phi(Q) \times (\phi(K)^T \times V) \)</div>
+                                        <div class="step-dim">\([N \times d] \times [d \times d]\)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Fast Weights & Synaptic Plasticity -->
+                <div class="tab-pane" id="tabContent2" role="tabpanel" aria-labelledby="tabBtn2">
+                    <div class="tab-inner-grid">
+                        <div class="tab-text-side">
+                            <div class="evidence-pill-row">
+                                <span class="evidence-pill pill-concept">[CONCEPTUAL RELATION: Schlag et al. 2021, Ba et al. 2016]</span>
+                            </div>
+                            <h3 class="tab-heading">Linear Attention as Fast-Weight Memory</h3>
+                            <p>
+                                Schlag, Irie, and Schmidhuber (NeurIPS 2021) established that Linear Transformers are mathematically equivalent to Fast Weight Programmers (FWPs):
+                            </p>
+                            <div class="math-callout">
+                                \[ W_t = W_{t-1} + \eta_t \cdot \phi(k_t) \otimes v_t^T \]
+                            </div>
+                            <p>
+                                The outer product \(\phi(k_t) v_t^T\) acts as a Hebbian associative write: pre-synaptic activation \(\phi(k_t)\) and post-synaptic signal \(v_t\) adjust connections in fast synaptic memory.
+                            </p>
+                        </div>
+                        <div class="tab-diagram-side">
+                            <div class="concept-diagram-box">
+                                <div class="diagram-title">Hebbian Synaptic Write</div>
+                                <div class="hebbian-card">
+                                    <div class="hebb-node-row">
+                                        <div class="hebb-node pre-node">
+                                            <span>Pre-Synaptic</span>
+                                            <strong>\(\phi(k_t)\)</strong>
+                                        </div>
+                                        <div class="synapse-connection">
+                                            <span class="synapse-wire"></span>
+                                            <span class="synapse-label">\(\Delta W = \phi(k)v^T\)</span>
+                                        </div>
+                                        <div class="hebb-node post-node">
+                                            <span>Post-Synaptic</span>
+                                            <strong>\(v_t\)</strong>
+                                        </div>
+                                    </div>
+                                    <div class="hebb-quote">
+                                        “Neurons that fire together, wire together.” Enacted via rank-1 outer product tensor accumulation.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Pathway BDH / BDH-CQ Architectural Family -->
+                <div class="tab-pane" id="tabContent3" role="tabpanel" aria-labelledby="tabBtn3">
+                    <div class="tab-inner-grid">
+                        <div class="tab-text-side">
+                            <div class="evidence-pill-row">
+                                <span class="evidence-pill pill-bdh">[BDH TECHNICAL REPORT / PATHWAY 2025–2026]</span>
+                                <span class="evidence-pill pill-concept">[CONCEPTUAL RELATION]</span>
+                            </div>
+                            <h3 class="tab-heading">Dragon Hatchling (BDH) & BDH-CQ</h3>
+                            <p>
+                                BDH is Pathway's brain-inspired Post-Transformer architecture where reasoning and memory share a unified computational fabric.
+                            </p>
+                            
+                            <div class="bdh-specs-table-box">
+                                <table class="lab-table mini-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Dimension</th>
+                                            <th>Standard Transformer</th>
+                                            <th>Pathway BDH / BDH-CQ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Memory Mechanism</strong></td>
+                                            <td>Growing KV-Cache (\(\mathcal{O}(N)\))</td>
+                                            <td>Synaptic Recurrence via Hebbian writes</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Activation Profile</strong></td>
+                                            <td>Dense continuous features</td>
+                                            <td>Sparse Non-Negative Activations (ReLU-low-rank)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Synaptic Semantics</strong></td>
+                                            <td>Polysemantic token embeddings</td>
+                                            <td>Monosemantic Synapses encoding distinct concepts</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>In-Context Learning (BDH-CQ)</strong></td>
+                                            <td>Context padding / Finetuning</td>
+                                            <td>Additive accumulation in recurrent state</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>GPU Formulation</strong></td>
+                                            <td>FlashAttention / PagedAttention</td>
+                                            <td>BDH-GPU: ReLU-low-rank linear projections</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="important-distinctions-box">
+                                <strong>Technical Scoping & Honest Distinctions:</strong>
+                                <ul>
+                                    <li><strong>BDH is NOT standard Linear Attention:</strong> While linear attention provides the associative summation reordering \((QK^T)V \to \phi(Q)(\phi(K)^T V)\), BDH introduces brain-inspired sparse non-negative representations, monosemantic synaptic weights, and internal recurrent reasoning dynamics.</li>
+                                    <li><strong>BDH is NOT an SSM / Mamba:</strong> State Space Models (e.g. Mamba, S4) operate via continuous-time diagonal linear dynamical systems (\(h' = Ah + Bx\)). BDH does NOT use continuous-time state matrices; its recurrence is formulated through discrete low-rank associative synaptic updates.</li>
+                                    <li><strong>BDH-CQ In-Context Adaptation:</strong> Adapts to demonstration tasks without test-time backpropagation; adaptation accumulates additively directly in recurrent synaptic state.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="tab-diagram-side">
+                            <div class="concept-diagram-box">
+                                <div class="diagram-title">BDH-CQ Demonstration Accumulation Flow</div>
+                                <div class="bdh-flow-diagram">
+                                    <div class="bdh-flow-step">
+                                        <span class="step-tag">DEMO 1</span>
+                                        <span class="step-action">\(S_1 = S_0 + \text{ReLU}(K_1) V_1^T\)</span>
+                                    </div>
+                                    <div class="flow-down-arrow">↓ Additive Demonstration Update</div>
+                                    <div class="bdh-flow-step">
+                                        <span class="step-tag">DEMO 2</span>
+                                        <span class="step-action">\(S_2 = S_1 + \text{ReLU}(K_2) V_2^T\)</span>
+                                    </div>
+                                    <div class="flow-down-arrow">↓ State Carried Forward</div>
+                                    <div class="bdh-flow-step highlight-step">
+                                        <span class="step-tag">QUERY</span>
+                                        <span class="step-action">\(\text{Output} = \text{Readout}(Q_{\text{test}}, S_2)\)</span>
+                                    </div>
+                                </div>
+                                <div class="diagram-caption">
+                                    [CONCEPTUAL RELATION] — Structural illustration of in-state demonstration accumulation; not a reproduction of full production model weights.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research Strip -->
+            <div class="research-strip-card">
+                <div class="strip-header">
+                    <span class="strip-badge">WHY THIS MATTERS NOW</span>
+                    <h3 class="strip-title">Literature on Linear Attention & Recurrent Architectures (2020–2026)</h3>
+                </div>
+                <div class="papers-cards-grid">
+                    <div class="paper-entry-card">
+                        <div class="paper-year">2022</div>
+                        <h4 class="paper-title">CosFormer: Rethinking Softmax in Attention</h4>
+                        <div class="paper-authors">Z. Qin, W. Sun, D. Li, et al. (ICLR 2022)</div>
+                        <p class="paper-contrib">
+                            Resolves attention collapse in linear transformers using a non-negative cosine distance re-weighting kernel with linear complexity.
+                        </p>
+                        <span class="evidence-pill pill-paper">[RESEARCH EVIDENCE: PRIMARY PAPER]</span>
+                    </div>
+
+                    <div class="paper-entry-card">
+                        <div class="paper-year">2023</div>
+                        <h4 class="paper-title">Retentive Network: A Successor to Transformer for Large Language Models</h4>
+                        <div class="paper-authors">Y. Sun, L. Dong, S. Huang, et al. (Microsoft Research)</div>
+                        <p class="paper-contrib">
+                            Unified parallel training and \(\mathcal{O}(1)\) recurrent inference using explicit exponential state decay gating.
+                        </p>
+                        <span class="evidence-pill pill-paper">[RESEARCH EVIDENCE: PRIMARY PAPER]</span>
+                    </div>
+
+                    <div class="paper-entry-card">
+                        <div class="paper-year">2024</div>
+                        <h4 class="paper-title">Gated Linear Attention Transformers with Hardware-Efficient Training</h4>
+                        <div class="paper-authors">S. Yang, B. Wang, Y. Shen, R. Panda, Y. Kim (ICML 2024)</div>
+                        <p class="paper-contrib">
+                            Introduces data-dependent chunkwise gating with GPU hardware-efficient kernels (Flash-Linear-Attention), matching softmax perplexity.
+                        </p>
+                        <span class="evidence-pill pill-paper">[RESEARCH EVIDENCE: PRIMARY PAPER]</span>
+                    </div>
+
+                    <div class="paper-entry-card">
+                        <div class="paper-year">2025–2026</div>
+                        <h4 class="paper-title">Dragon Hatchling (BDH) & BDH-CQ Architecture Series</h4>
+                        <div class="paper-authors">Pathway Research Team</div>
+                        <p class="paper-contrib">
+                            Post-Transformer architecture replacing KV cache with synaptic plasticity, monosemantic synapses, and additive demonstration memory.
+                        </p>
+                        <span class="evidence-pill pill-bdh">[BDH TECHNICAL REPORT]</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================================
+             07 LIMITATIONS: SCIENTIFIC HONESTY
+             ========================================================= -->
+        <section class="section-container section-panel" id="limitations" data-section-idx="6">
+            <div class="section-intro">
+                <span class="section-number">07 / SCIENTIFIC HONESTY</span>
+                <h2 class="section-heading">WHAT THIS DEMO DOES NOT PROVE</h2>
+                <p class="section-subtext">
+                    Scientific credibility requires stating honest limitations. Linear attention and Transformers occupy different trade-offs on the computational Pareto frontier.
+                </p>
+            </div>
+
+            <div class="limitations-grid">
+                <div class="limitation-card">
+                    <div class="limitation-icon">⚠️</div>
+                    <h3 class="limitation-title">1. Toy Educational Substrate</h3>
+                    <p>
+                        The computation running on this page is a 4-dimensional toy feature substrate designed for pedagogical transparency, not a full multi-head, multi-layer production LLM.
+                    </p>
+                    <span class="limitation-tag">[PEDAGOGICAL TOY]</span>
+                </div>
+
+                <div class="limitation-card">
+                    <div class="limitation-icon">⚠️</div>
+                    <h3 class="limitation-title">2. Finite Capacity & Associative Interference</h3>
+                    <p>
+                        Compressing an unbounded sequence into a fixed \(d \times d\) matrix causes earlier associations to degrade over long contexts without decay gating or memory eviction.
+                    </p>
+                    <span class="limitation-tag">[CAPACITY BOTTLENECK]</span>
+                </div>
+
+                <div class="limitation-card">
+                    <div class="limitation-icon">⚠️</div>
+                    <h3 class="limitation-title">3. Softmax Sharpness Loss</h3>
+                    <p>
+                        Softmax attention applies an exponential \(\exp(q^T k)\), creating sharp focus on isolated outlier tokens. Linear attention feature maps produce flatter retrieval distributions.
+                    </p>
+                    <span class="limitation-tag">[RETRIEVAL DILUTION]</span>
+                </div>
+
+                <div class="limitation-card">
+                    <div class="limitation-icon">⚠️</div>
+                    <h3 class="limitation-title">4. Hardware & FlashAttention Realities</h3>
+                    <p>
+                        Theoretical \(\mathcal{O}(N)\) complexity does not automatically imply faster wall-clock execution. For short sequences (\(N \le 2048\)), FlashAttention's SRAM tiling often outperforms recurrent scans on modern GPUs.
+                    </p>
+                    <span class="limitation-tag">[HARDWARE BOTTLENECK]</span>
+                </div>
+
+                <div class="limitation-card">
+                    <div class="limitation-icon">⚠️</div>
+                    <h3 class="limitation-title">5. Scoped BDH Analogy</h3>
+                    <p>
+                        The connection to BDH-CQ is an architectural analogy illustrating recurrent associative accumulation. It does not prove the benchmark performance of Pathway's full production models.
+                    </p>
+                    <span class="limitation-tag">[SCOPED ANALOGY]</span>
+                </div>
+
+                <div class="limitation-card">
+                    <div class="limitation-icon">⚠️</div>
+                    <h3 class="limitation-title">6. No Universal Superiority Claim</h3>
+                    <p>
+                        Neither architecture is universally superior. Linear attention trades away exponential softmax sharpness in exchange for constant decoding memory footprint.
+                    </p>
+                    <span class="limitation-tag">[PARETO TRADE-OFF]</span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================================
+             08 SOURCES: READ THE PAPERS
+             ========================================================= -->
+        <section class="section-container section-panel" id="sources" data-section-idx="7">
+            <div class="section-intro">
+                <span class="section-number">08 / SYNTHESIS & PRIMARY LITERATURE</span>
+                <h2 class="section-heading">THE 60-SECOND EXPLAINER & PAPERS</h2>
+                <p class="section-subtext">
+                    Test your understanding of the core 4-step pipeline, grounded directly in primary peer-reviewed literature.
+                </p>
+            </div>
+
+            <!-- 60-Second Explainer Challenge: Reconstruct the Pipeline -->
+            <div class="explainer-challenge-card" id="explainerChallengeBox">
+                <div class="challenge-header-row">
+                    <div class="challenge-title-group">
+                        <span class="challenge-badge">60-SECOND HACKATHON SYNTHESIS</span>
+                        <h3 class="challenge-heading">Can You Explain Linear Attention in 60 Seconds?</h3>
+                    </div>
+                    <div class="challenge-timer-group">
+                        <div class="timer-display font-mono" id="explainerTimerDisplay">01:00</div>
+                        <button class="btn btn-secondary btn-sm" id="explainerTimerBtn">
+                            <span id="explainerTimerBtnText">START 60s TIMER</span>
+                        </button>
+                    </div>
+                </div>
+
+                <p class="challenge-lead">
+                    Linear attention is not a vague approximation. It is an exact sequence of 4 physical operations:
+                </p>
+
+                <div class="pipeline-cards-row" id="explainerPipelineCards">
+                    <div class="pipeline-challenge-card" data-step="0">
+                        <div class="card-step-num">STEP 1</div>
+                        <div class="card-step-name">TOKENS (\(x_t\))</div>
+                        <div class="card-step-desc">
+                            Incoming token arrives as vector \(x_t \in \mathbb{R}^d\). No past keys or values need to be reloaded into GPU high-bandwidth memory.
+                        </div>
+                    </div>
+
+                    <div class="pipeline-flow-arrow">➔</div>
+
+                    <div class="pipeline-challenge-card" data-step="1">
+                        <div class="card-step-num">STEP 2</div>
+                        <div class="card-step-name">UPDATE (\(\Delta S_t\))</div>
+                        <div class="card-step-desc">
+                            Compute rank-1 outer product \(\Delta S_t = \phi(k_t) \otimes v_t^T\). Acts like a local Hebbian fast-weight synaptic write.
+                        </div>
+                    </div>
+
+                    <div class="pipeline-flow-arrow">➔</div>
+
+                    <div class="pipeline-challenge-card" data-step="2">
+                        <div class="card-step-num">STEP 3</div>
+                        <div class="card-step-name">STATE (\(S_t\))</div>
+                        <div class="card-step-desc">
+                            Accumulates in-place: \(S_t = S_{t-1} + \Delta S_t\). Constant \(d \times d\) memory footprint regardless of sequence length \(N\).
+                        </div>
+                    </div>
+
+                    <div class="pipeline-flow-arrow">➔</div>
+
+                    <div class="pipeline-challenge-card" data-step="3">
+                        <div class="card-step-num">STEP 4</div>
+                        <div class="card-step-name">QUERY (\(y_t\))</div>
+                        <div class="card-step-desc">
+                            Probe query extracts answer in \(\mathcal{O}(1)\) time via single vector-matrix dot product: \(y_t = \frac{\phi(q_t)^T S_t}{\phi(q_t)^T z_t}\).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="challenge-actions-bar">
+                    <button class="btn btn-primary" id="verifyPipelineBtn">
+                        <span>VERIFY PIPELINE FLOW</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                    </button>
+                    <div class="pipeline-verdict" id="pipelineVerdict" style="display: none;">
+                        <span class="text-accent-sage">✓ Synthesis Validated:</span>
+                        <em>“Tokens ➔ Update ➔ State ➔ Query. That is why Linear Attention eliminates the growing KV-cache memory bill.”</em>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Primary Literature Directory -->
+            <div class="sources-directory-card" style="margin-top: 2rem;">
+                <!-- Group 1: Highlighted Primary Research (2022–2026) -->
+                <div class="sources-group">
+                    <h3 class="source-group-title">
+                        <span class="group-title-badge">2022–2026</span>
+                        Highlighted Primary Research Papers
+                    </h3>
+                    <ul class="sources-list">
+                        <li class="source-item">
+                            <span class="source-badge badge-paper">[RESEARCH EVIDENCE: PRIMARY PAPER]</span>
+                            <div class="source-details">
+                                <strong class="source-name">CosFormer: Rethinking Softmax in Attention</strong>
+                                <span class="source-authors">Z. Qin, W. Sun, D. Li, et al. (ICLR 2022)</span>
+                                <span class="source-link">arXiv:2202.08791 — Resolves attention collapse using cosine-based distance re-weighting with \(\mathcal{O}(N)\) causal complexity.</span>
+                            </div>
+                        </li>
+                        <li class="source-item">
+                            <span class="source-badge badge-paper">[RESEARCH EVIDENCE: PRIMARY PAPER]</span>
+                            <div class="source-details">
+                                <strong class="source-name">Retentive Network: A Successor to Transformer for Large Language Models</strong>
+                                <span class="source-authors">Y. Sun, L. Dong, S. Huang, S. Ma, Y. Xia, J. Xue, J. Wang, F. Wei (2023)</span>
+                                <span class="source-link">arXiv:2307.08621 — Establishes decay-gated dual parallel-recurrent representations with \(\mathcal{O}(1)\) inference memory.</span>
+                            </div>
+                        </li>
+                        <li class="source-item">
+                            <span class="source-badge badge-paper">[RESEARCH EVIDENCE: PRIMARY PAPER]</span>
+                            <div class="source-details">
+                                <strong class="source-name">Gated Linear Attention Transformers with Hardware-Efficient Training</strong>
+                                <span class="source-authors">S. Yang, B. Wang, Y. Shen, R. Panda, Y. Kim (ICML 2024)</span>
+                                <span class="source-link">arXiv:2312.06635 — Introduces data-dependent gating and GPU hardware-efficient kernels (Flash-Linear-Attention).</span>
+                            </div>
+                        </li>
+                        <li class="source-item">
+                            <span class="source-badge badge-paper">[RESEARCH EVIDENCE: PRIMARY PAPER]</span>
+                            <div class="source-details">
+                                <strong class="source-name">RWKV: Reinventing RNNs for the Transformer Era</strong>
+                                <span class="source-authors">B. Peng, E. Alcaide, Q. Anthony, A. Albalak, S. Arcadipane, et al. (EMNLP 2023)</span>
+                                <span class="source-link">arXiv:2305.13048 — Attention-free Transformer formulation with linear recurrent decoding and constant memory.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Group 2: Foundational Background (2020–2021) -->
+                <div class="sources-group" style="margin-top: 2rem;">
+                    <h3 class="source-group-title">
+                        <span class="group-title-badge badge-muted">2020–2021</span>
+                        Foundational & Background Literature
+                    </h3>
+                    <ul class="sources-list">
+                        <li class="source-item">
+                            <span class="source-badge badge-concept">[FOUNDATIONAL / BACKGROUND]</span>
+                            <div class="source-details">
+                                <strong class="source-name">Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention</strong>
+                                <span class="source-authors">A. Katharopoulos, A. Vyas, N. Pappas, F. Fleuret (ICML 2020)</span>
+                                <span class="source-link">arXiv:2006.16236 — Kernel feature map decomposition \(\phi(Q)(\phi(K)^T V)\) establishing constant memory inference.</span>
+                            </div>
+                        </li>
+                        <li class="source-item">
+                            <span class="source-badge badge-concept">[FOUNDATIONAL / BACKGROUND]</span>
+                            <div class="source-details">
+                                <strong class="source-name">Linear Transformers Are Secretly Fast Weight Programmers</strong>
+                                <span class="source-authors">I. Schlag, K. Irie, J. Schmidhuber (NeurIPS 2021)</span>
+                                <span class="source-link">arXiv:2102.11174 — Mathematical equivalence between linear attention and Hebbian fast weights.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Group 3: Pathway BDH Technical Reports -->
+                <div class="sources-group" style="margin-top: 2rem;">
+                    <h3 class="source-group-title">
+                        <span class="group-title-badge badge-bdh-title">2025–2026</span>
+                        Pathway BDH Primary Resources
+                    </h3>
+                    <ul class="sources-list">
+                        <li class="source-item">
+                            <span class="source-badge badge-bdh">[BDH TECHNICAL REPORT]</span>
+                            <div class="source-details">
+                                <strong class="source-name">Dragon Hatchling (BDH) & BDH-CQ Architecture Whitepaper</strong>
+                                <span class="source-authors">Pathway Research Team (2025–2026)</span>
+                                <span class="source-link">Details brain-inspired Post-Transformer architecture, synaptic Hebbian writes, and demonstration accumulation in recurrent state.</span>
+                            </div>
+                        </li>
+                        <li class="source-item">
+                            <span class="source-badge badge-bdh">[BDH TECHNICAL REPORT]</span>
+                            <div class="source-details">
+                                <strong class="source-name">Why BDH Uses a Brain-Inspired Architecture & The Equations of Reasoning</strong>
+                                <span class="source-authors">Pathway Scientific Series</span>
+                                <span class="source-link">Discusses sparse non-negative representations, monosemantic synapses, and ReLU-low-rank linear attention projections.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================================
+             EDITORIAL FOOTER
+             ========================================================= -->
+        <footer class="lab-footer">
+            <div class="footer-container">
+                <div class="footer-col brand-col">
+                    <div class="footer-brand-title">MEMORY LAB</div>
+                    <p class="footer-desc">
+                        Interactive educational explainer demystifying Linear Attention, fast weights, and Post-Transformer architectures.
+                    </p>
+                    <div class="footer-track-tag">
+                        <strong>Track:</strong> Pathway — Explain the Frontier (DataForge 2026)
+                    </div>
+                </div>
+
+                <div class="footer-col links-col">
+                    <div class="footer-col-title">SECTIONS</div>
+                    <ul class="footer-links">
+                        <li><a href="#problem">01 The Problem</a></li>
+                        <li><a href="#pressure">02 100-Token Race</a></li>
+                        <li><a href="#experiment">03 Memory Engine</a></li>
+                        <li><a href="#prediction">04 Prediction Quiz</a></li>
+                        <li><a href="#bdh">05 BDH & BDH-CQ</a></li>
+                        <li><a href="#limitations">06 Honest Limitations</a></li>
+                        <li><a href="#sources">07 Sources</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col discipline-col">
+                    <div class="footer-col-title">EVIDENCE DISCIPLINE</div>
+                    <div class="footer-badges-list">
+                        <span class="evidence-pill pill-paper">[FORMAL / PAPER] Verified literature</span>
+                        <span class="evidence-pill pill-concept">[CONCEPTUAL] Structural analogy</span>
+                        <span class="evidence-pill pill-toy">[TOY] Client-side JavaScript computation</span>
+                        <span class="evidence-pill pill-bdh">[BDH] Pathway architecture series</span>
+                    </div>
+                    <p class="footer-disclaimer">
+                        Built as an educational artifact for DataForge 2026. Toy computations are explicitly labeled. Research claims should be verified against primary sources.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom-line">
+                <span>© 2026 MEMORY LAB — Dedicated to open, rigorous AI education.</span>
+                <span class="bottom-tag">No white backgrounds. No fake animations. Real computational substrates.</span>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Custom Script Engine -->
+    <script src="script.js"></script>
+    <script>
+        // Initialize KaTeX auto-renderer if available
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '\\[', right: '\\]', display: true},
+                        {left: '$', right: '$', display: false},
+                        {left: '\\(', right: '\\)', display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
+</body>
+</html>
