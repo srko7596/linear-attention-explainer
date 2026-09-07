@@ -66,8 +66,21 @@
                 <a href="#sources" class="nav-item">07 Sources</a>
             </nav>
 
+            <div class="mobile-nav-panel" id="mobileNavPanel" hidden>
+                <a href="#problem">01 · Problem</a>
+                <a href="#pressure">02 · 100-Token Race</a>
+                <a href="#experiment">03 · Memory Engine</a>
+                <a href="#prediction">04 · Predict</a>
+                <a href="#bdh">05 · BDH Research</a>
+                <a href="#limitations">06 · Limits</a>
+                <a href="#sources">07 · Sources</a>
+            </div>
+
             <div class="nav-actions">
-                <div class="status-indicator" title="Substrate is active and executing live JavaScript linear algebra">
+                <button id="mobileMenuBtn" class="mobile-menu-btn" type="button" aria-expanded="false" aria-controls="mobileNavPanel" aria-label="Open section menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="status-indicator" title="Interactive computation is ready; animations start only when you press Play">
                     <span class="pulse-dot"></span>
                     <span class="status-label">LIVE COMPUTATION</span>
                 </div>
@@ -134,15 +147,15 @@
                     <div class="card-header-line">
                         <div class="engine-title-group">
                             <span class="evidence-pill pill-toy">[TOY COMPUTATION]</span>
-                            <span class="engine-title">ACTIVE MEMORY ENGINE</span>
-                            <span class="engine-status" id="heroEngineStatus">t = 01 | token = "The" | state updated</span>
+                            <span class="engine-title">MEMORY ENGINE · READY</span>
+                            <span class="engine-status" id="heroEngineStatus">READY · Press PLAY to run the pipeline</span>
                         </div>
                         <div class="engine-controls-group">
                             <button id="heroPlayBtn" class="btn-hero-ctrl" title="Play Engine" aria-label="Play Engine">
                                 <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                                 <span>PLAY</span>
                             </button>
-                            <button id="heroPauseBtn" class="btn-hero-ctrl active" title="Pause Engine" aria-label="Pause Engine">
+                            <button id="heroPauseBtn" class="btn-hero-ctrl" title="Pause Engine" aria-label="Pause Engine">
                                 <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
                                 <span>PAUSE</span>
                             </button>
@@ -533,7 +546,7 @@
                     <div class="control-group action-buttons">
                         <button id="btnAutoRun" class="btn btn-action btn-highlight" title="Run continuous sequence stream">
                             <svg id="autoRunIcon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                            <span id="autoRunLabel">AUTO RUN</span>
+                            <span id="autoRunLabel">PLAY AUTO RUN</span>
                         </button>
                         <button id="btnStepNext" class="btn btn-action" title="Process exactly one token (Hotkey: Space)">
                             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4l10 8-10 8V4zM19 5v14"/></svg>
@@ -552,6 +565,7 @@
                         <label for="expSpeedSlider" class="control-label">Speed: <span id="speedVal">1.0×</span></label>
                         <input type="range" id="expSpeedSlider" min="0.2" max="3.0" step="0.2" value="1.0" class="lab-range-mini">
                     </div>
+                    <div class="interaction-note" aria-live="polite">▶ Nothing runs automatically — click <strong>PLAY AUTO RUN</strong> or <strong>STEP</strong>.</div>
                 </div>
 
                 <!-- Sequence Timeline Ribbon -->

@@ -153,7 +153,7 @@
     ];
 
     let heroTokenIndex = 0;
-    let heroIsPlaying = true;
+    let heroIsPlaying = false;
     let heroCycleTimer = null;
     let heroPhaseTimeouts = [];
     let heroState = createZeroMatrix(3, 3);
@@ -238,9 +238,11 @@
             });
         }
 
-        // Start playing from token 0
+        // Intentionally paused on first load: judges choose when the animation runs.
         heroTokenIndex = 0;
-        playHeroEngine();
+        pauseHeroEngine();
+        const statusEl = document.getElementById("heroEngineStatus");
+        if (statusEl) statusEl.textContent = 'READY · Press PLAY to run the pipeline';
     }
 
     function playHeroEngine() {
@@ -852,7 +854,7 @@
         stateMatrix: createZeroMatrix(4, 4),
         normalizerVector: [0, 0, 0, 0],
         tokenHistory: [],
-        isRunning: true, // Default: AUTO RUN active!
+        isRunning: false, // Default: paused; user explicitly starts AUTO RUN.
         timerId: null,
         speedMultiplier: 1.0,
         detailsOpen: false
@@ -944,9 +946,9 @@
             }
         });
 
-        // Initialize state & start Auto Run
+        // Initialize state only. Auto Run stays paused until the user presses PLAY.
         resetExperiment();
-        startAutoRun();
+        pauseAutoRun();
     }
 
     function resetExperiment() {
@@ -1059,7 +1061,7 @@
         const icon = document.getElementById("autoRunIcon");
         const label = document.getElementById("autoRunLabel");
 
-        if (label) label.textContent = "PAUSE";
+        if (label) label.textContent = "PAUSE AUTO RUN";
         if (icon) {
             icon.innerHTML = `<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>`;
         }
@@ -1078,7 +1080,7 @@
         }
         const icon = document.getElementById("autoRunIcon");
         const label = document.getElementById("autoRunLabel");
-        if (label) label.textContent = "AUTO RUN";
+        if (label) label.textContent = "PLAY AUTO RUN";
         if (icon) {
             icon.innerHTML = `<polygon points="5 3 19 12 5 21 5 3"/>`;
         }
@@ -1458,6 +1460,29 @@
     }
 
 
+    function initMobileNavigation() {
+        const btn = document.getElementById("mobileMenuBtn");
+        const panel = document.getElementById("mobileNavPanel");
+        if (!btn || !panel) return;
+
+        btn.addEventListener("click", () => {
+            const open = btn.getAttribute("aria-expanded") === "true";
+            btn.setAttribute("aria-expanded", String(!open));
+            btn.setAttribute("aria-label", open ? "Open section menu" : "Close section menu");
+            panel.hidden = open;
+            panel.classList.toggle("open", !open);
+        });
+
+        panel.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                btn.setAttribute("aria-expanded", "false");
+                btn.setAttribute("aria-label", "Open section menu");
+                panel.hidden = true;
+                panel.classList.remove("open");
+            });
+        });
+    }
+
     // =========================================================================
     // DOM READY INITIALIZATION
     // =========================================================================
@@ -1471,6 +1496,7 @@
         init60sExplainer();
         initScrollTracking();
         initAccessibility();
+        initMobileNavigation();
     });
 
 })();
