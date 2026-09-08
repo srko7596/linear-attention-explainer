@@ -1,0 +1,5 @@
+MEMORY LAB — Educational Artifact
+
+Copyright 2026 the submitting team.
+
+Unless a separate license is stated for a reused dependency, the original project files in this submission are provided for hackathon judging and educational review. Third-party dependencies retain their own licenses as documented in SOURCES_AND_LICENSES.md.
